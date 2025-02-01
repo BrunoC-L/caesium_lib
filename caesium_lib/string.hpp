@@ -71,14 +71,14 @@ namespace caesium_lib {
 			return join(join(std::move(str1), std::move(str2), std::forward<decltype(strs)>(strs)...));
 		}
 	}
+}
 
-	constexpr inline string::type copy(const string::type& x) {
-		return { x._value };
-	}
+constexpr inline caesium_lib::string::type copy(const caesium_lib::string::type& x) {
+	return { x._value };
+}
 
-	constexpr inline std::string copy(const std::string& t) {
-		return t;
-	}
+constexpr inline std::string copy(const std::string& t) {
+	return t;
 }
 
 DISABLE_BAD_MOVE(caesium_lib::string::type)

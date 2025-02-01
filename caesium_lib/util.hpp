@@ -27,33 +27,11 @@ struct type {\
 	}\
 };
 
-namespace caesium_lib {
-	template <typename T>
-	constexpr inline T copy(T t) {
-		static_assert(!sizeof(T*), "missing definition for `T copy<T>(const T& t)` see template instantiation context for information on T");
-	}
-
-	constexpr inline int copy(const int& t) {
-		return t;
-	}
-
-	constexpr inline double copy(const double& t) {
-		return t;
-	}
-
-	constexpr inline float copy(const float& t) {
-		return t;
-	}
-
-	constexpr inline size_t copy(const size_t& t) {
-		return t;
-	}
-
-	constexpr inline char copy(const char& t) {
-		return t;
-	}
-
-	constexpr inline unsigned copy(const unsigned& t) {
-		return t;
-	}
-}
+template <typename T> T copy(T t) { return std::move(t); }
+constexpr inline bool copy(bool e) { return e; }
+constexpr inline char copy(char e) { return e; }
+constexpr inline int copy(int e) { return e; }
+constexpr inline float copy(float e) { return e; }
+constexpr inline unsigned copy(unsigned e) { return e; }
+constexpr inline size_t copy(size_t e) { return e; }
+constexpr inline double copy(double e) { return e; }

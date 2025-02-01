@@ -40,11 +40,18 @@ namespace caesium_lib {
 			);
 		};*/
 	}
+}
+template <typename... Ts>
+inline constexpr caesium_lib::variant::type<Ts...> copy(const caesium_lib::variant::type<Ts...>& x);
 
-	template <typename... Ts>
-	inline constexpr variant::type<Ts...> copy(const variant::type<Ts...>& x) {
-		return variant::visit(x, [](const auto& t) { return caesium_lib::copy(t); });
-	}
+template <typename... Ts>
+inline constexpr std::variant<Ts...> copy(const std::variant<Ts...>& x) {
+	return std::visit(x, [](const auto& t) { return std::variant<Ts...>{ copy(t) }; });
+}
+
+template <typename... Ts>
+inline constexpr caesium_lib::variant::type<Ts...> copy(const caesium_lib::variant::type<Ts...>& x) {
+	return caesium_lib::variant::visit(x, [](const auto& t) { return caesium_lib::variant::type<Ts...>{ copy(t) }; });
 }
 
 DISABLE_BAD_MOVE_TEMPLATE(caesium_lib::variant::type)

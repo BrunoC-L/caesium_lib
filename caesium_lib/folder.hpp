@@ -35,10 +35,10 @@ namespace caesium_lib {
 			return entries(folder_name._value.c_str());
 		}
 	}
+}
 
-	inline filesystem::folder::type copy(const filesystem::folder::type& e) {
-		return e._value;
-	}
+inline caesium_lib::filesystem::folder::type copy(const caesium_lib::filesystem::folder::type& e) {
+	return e._value;
 }
 
 DISABLE_BAD_MOVE(caesium_lib::filesystem::folder::type)

@@ -12,7 +12,7 @@ namespace caesium_lib {
 		}
 
 		template <typename T>
-		type<T> make_reserved(size_t n) {
+		type<T> make_with_capacity(size_t n) {
 			auto res = make_empty<T>();
 			reserve(res, n);
 			return res;
@@ -56,14 +56,24 @@ namespace caesium_lib {
 			return std::move(vec);
 		}
 	}
+}
 
-	template <typename T>
-	constexpr inline vector::type<T> copy(const vector::type<T>& x) {
-		std::vector<T> res{};
-		for (const T& e : x._value)
-			res.push_back(caesium_lib::copy(e));
-		return res;
-	}
+// forward declare to allow copy(std::vector<caesium_lib::vector::type<T>>)
+template <typename T>
+constexpr inline caesium_lib::vector::type<T> copy(const caesium_lib::vector::type<T>& x);
+
+template <typename T>
+constexpr inline std::vector<T> copy(const std::vector<T>& x) {
+	std::vector<T> res{};
+	res.reserve(x.size());
+	for (const T& e : x)
+		res.push_back(copy(e));
+	return res;
+}
+
+template <typename T>
+constexpr inline caesium_lib::vector::type<T> copy(const caesium_lib::vector::type<T>& x) {
+	return copy(x._value);
 }
 
 DISABLE_BAD_MOVE_TEMPLATE(caesium_lib::vector::type)

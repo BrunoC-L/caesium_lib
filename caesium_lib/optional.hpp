@@ -31,14 +31,25 @@ namespace caesium_lib {
 			return std::move(optional)._value.value();
 		}
 	}
+}
 
-	template <typename T>
-	inline constexpr optional::type<T> copy(const optional::type<T>& x) {
-		if (optional::has_value(x))
-			return optional::type<T>{ caesium_lib::copy(x._value.value()) };
-		else
-			return optional::type<T>{ std::nullopt };
-	}
+template <typename T>
+inline constexpr caesium_lib::optional::type<T> copy(const caesium_lib::optional::type<T>& x);
+
+template <typename T>
+inline constexpr std::optional<T> copy(const std::optional<T>& x) {
+	if (x.has_value())
+		return std::optional<T>{ copy(x.value()) };
+	else
+		return std::optional<T>{ std::nullopt };
+}
+
+template <typename T>
+inline constexpr caesium_lib::optional::type<T> copy(const caesium_lib::optional::type<T>& x) {
+	if (caesium_lib::optional::has_value(x))
+		return caesium_lib::optional::type<T>{ copy(x._value.value()) };
+	else
+		return caesium_lib::optional::type<T>{ std::nullopt };
 }
 
 DISABLE_BAD_MOVE_TEMPLATE(caesium_lib::optional::type)
