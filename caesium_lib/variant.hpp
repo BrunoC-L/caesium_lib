@@ -46,7 +46,7 @@ inline constexpr caesium_lib::variant::type<Ts...> copy(const caesium_lib::varia
 
 template <typename... Ts>
 inline constexpr std::variant<Ts...> copy(const std::variant<Ts...>& x) {
-	return std::visit(x, [](const auto& t) { return std::variant<Ts...>{ copy(t) }; });
+	return std::visit([](const auto& t) { return std::variant<Ts...>{ copy(t) }; }, x);
 }
 
 template <typename... Ts>

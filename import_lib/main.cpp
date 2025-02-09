@@ -105,6 +105,15 @@ int main() {
 		auto v3 = copy(v2);
 		auto v4 = std::move(v3);
 	}
+	{
+		auto vstr = variant::type<int, string::type>{ string::type{"123"} };
+		auto vint = variant::type<int, string::type>{ 1 };
+		auto vstr2 = std::move(vstr);
+		auto vint2 = std::move(vint);
+		auto vstr3 = copy(vstr2);
+		auto vint3 = copy(vint2);
+		std::swap(vstr3, vint3);
+	}
 
 	return 0;
 }
