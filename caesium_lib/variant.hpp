@@ -4,7 +4,7 @@
 namespace caesium_lib {
 	namespace variant {
 		template <typename... Ts>
-		WRAPPER_FOR(std::variant<Ts...>);
+		WRAPPER_FOR(std::variant<Ts...>, constexpr);
 
 		template <typename... Ts>
 		inline constexpr auto visit(const type<Ts...>& variant, const auto& overload_set) {

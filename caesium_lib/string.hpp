@@ -5,7 +5,7 @@
 
 namespace caesium_lib {
 	namespace string {
-		WRAPPER_FOR(std::string)
+		WRAPPER_FOR(std::string, constexpr)
 
 		inline constexpr int size(const type& str) {
 			return (int)str._value.size();
@@ -51,13 +51,13 @@ namespace caesium_lib {
 				return std::nullopt;
 		}
 
-		inline constexpr type reserve(int new_capacity) {
+		inline constexpr type reserve(unsigned new_capacity) {
 			type str = "";
 			str._value.reserve(new_capacity);
-			return std::move(str);
+			return str;
 		}
 
-		inline constexpr type reserve(type str, int new_capacity) {
+		inline constexpr type reserve(type str, unsigned new_capacity) {
 			str._value.reserve(new_capacity);
 			return std::move(str);
 		}

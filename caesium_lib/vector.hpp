@@ -4,7 +4,7 @@
 namespace caesium_lib {
 	namespace vector {
 		template <typename T>
-		WRAPPER_FOR(std::vector<T>);
+		WRAPPER_FOR(std::vector<T>, constexpr);
 
 		template <typename T>
 		type<T> make_empty() {

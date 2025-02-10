@@ -6,7 +6,7 @@ namespace caesium_lib {
 
 	namespace filesystem {
 		namespace folder {
-			WRAPPER_FOR(std::filesystem::directory_entry)
+			WRAPPER_FOR(std::filesystem::directory_entry,)
 		}
 
 		inline vector::type<variant::type<file::type, folder::type>> entries(const std::filesystem::directory_iterator& it) {

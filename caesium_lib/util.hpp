@@ -14,7 +14,7 @@ namespace std {\
 	T&& move(T&&) = delete;\
 }
 
-#define WRAPPER_FOR(T) \
+#define WRAPPER_FOR(T, constexpr) \
 struct type {\
 	T _value;\
 	constexpr type(type&&) = default;\
@@ -33,5 +33,5 @@ constexpr inline char copy(char e) { return e; }
 constexpr inline int copy(int e) { return e; }
 constexpr inline float copy(float e) { return e; }
 constexpr inline unsigned copy(unsigned e) { return e; }
-constexpr inline size_t copy(size_t e) { return e; }
+constexpr inline std::size_t copy(std::size_t e) { return e; }
 constexpr inline double copy(double e) { return e; }

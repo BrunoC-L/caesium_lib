@@ -5,7 +5,7 @@
 namespace caesium_lib {
 	namespace filesystem {
 		namespace file {
-			WRAPPER_FOR(std::filesystem::directory_entry);
+			WRAPPER_FOR(std::filesystem::directory_entry,);
 		}
 	}
 }

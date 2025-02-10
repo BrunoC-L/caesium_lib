@@ -1,5 +1,6 @@
 #include "lib.hpp"
 #include <iostream>
+#include <assert.h>
 
 template <typename T>
 constexpr bool is_move_constructible_and_not_copy_assignable_v = !std::is_copy_assignable_v<T> && std::is_move_constructible_v<T>;
@@ -21,19 +22,19 @@ int main() {
 		const string::type str3 = "1234";
 		{
 			const bool b = string::equals(str1, str2);
-			_ASSERT(b);
+			assert(b);
 		}
 		{
 			const bool b = string::equals(str1, "123");
-			_ASSERT(b);
+			assert(b);
 		}
 		{
 			const bool b = string::equals(str1, str3);
-			_ASSERT(!b);
+			assert(!b);
 		}
 		{
 			const bool b = string::equals(str1, "1234");
-			_ASSERT(!b);
+			assert(!b);
 		}
 	}
 	{
@@ -43,41 +44,41 @@ int main() {
 		const string::type str4 = "12";
 		{
 			const auto res = string::compare(str1, str2);
-			_ASSERT(res == res.equal);
+			assert(res == res.equal);
 		}
 		{
 			const auto res = string::compare(str1, "123");
-			_ASSERT(res == res.equal);
+			assert(res == res.equal);
 		}
 		{
 			const auto res = string::compare(str1, str3);
-			_ASSERT(res == res.less);
+			assert(res == res.less);
 		}
 		{
 			const auto res = string::compare(str1, "1234");
-			_ASSERT(res == res.less);
+			assert(res == res.less);
 		}
 		{
 			const auto res = string::compare(str1, str4);
-			_ASSERT(res == res.greater);
+			assert(res == res.greater);
 		}
 		{
 			const auto res = string::compare(str1, "12");
-			_ASSERT(res == res.greater);
+			assert(res == res.greater);
 		}
 	}
 	{
 		const string::type str = "123";
 		const bool b = string::begins_with(str, "123");
-		_ASSERT(b);
+		assert(b);
 	}
 	{
 		const string::type str = "123";
 		const auto it = string::find(str, "2");
 		const bool b = optional::has_value(it);
-		_ASSERT(b);
+		assert(b);
 		const char c = *optional::value(it);
-		_ASSERT(c == '2');
+		assert(c == '2');
 	}
 	{
 		string::type str = "123";
@@ -96,7 +97,7 @@ int main() {
 		using namespace std::string_literals;
 		auto entries = filesystem::entries("C:/");
 		for (const auto& entry : entries) {
-
+			(void)entry;
 		}
 	}
 	{

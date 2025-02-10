@@ -4,7 +4,7 @@
 namespace caesium_lib {
 	namespace optional {
 		template <typename T>
-		WRAPPER_FOR(std::optional<T>);
+		WRAPPER_FOR(std::optional<T>, constexpr);
 
 		template <typename T>
 		inline constexpr bool has_value(const type<T>& optional) {
