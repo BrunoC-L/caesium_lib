@@ -27,7 +27,7 @@ struct type {\
 	}\
 };
 
-template <typename T> T copy(T t) { return std::move(t); }
+template <typename T> T copy(T t);
 constexpr inline bool copy(bool e) { return e; }
 constexpr inline char copy(char e) { return e; }
 constexpr inline int copy(int e) { return e; }
