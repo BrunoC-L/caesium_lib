@@ -37,8 +37,4 @@ namespace caesium_lib {
 	}
 }
 
-inline caesium_lib::filesystem::folder::type copy(const caesium_lib::filesystem::folder::type& e) {
-	return e._value;
-}
-
 DISABLE_BAD_MOVE(caesium_lib::filesystem::folder::type)

@@ -73,12 +73,14 @@ namespace caesium_lib {
 	}
 }
 
-constexpr inline caesium_lib::string::type copy(const caesium_lib::string::type& x) {
-	return { x._value };
-}
+template <>
+struct copy_t<caesium_lib::string::type> {
+	static constexpr caesium_lib::string::type copy(const caesium_lib::string::type& t) { return { t._value }; }
+};
 
-constexpr inline std::string copy(const std::string& t) {
-	return t;
-}
+template <>
+struct copy_t<std::string> {
+	static constexpr std::string copy(const std::string& t) { return t; }
+};
 
 DISABLE_BAD_MOVE(caesium_lib::string::type)

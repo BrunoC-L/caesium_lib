@@ -41,17 +41,19 @@ namespace caesium_lib {
 		};*/
 	}
 }
-template <typename... Ts>
-inline constexpr caesium_lib::variant::type<Ts...> copy(const caesium_lib::variant::type<Ts...>& x);
 
 template <typename... Ts>
-inline constexpr std::variant<Ts...> copy(const std::variant<Ts...>& x) {
-	return std::visit([](const auto& t) { return std::variant<Ts...>{ copy(t) }; }, x);
-}
+struct copy_t<std::variant<Ts...>> {
+	static constexpr std::variant<Ts...> copy(const std::variant<Ts...>& x) {
+		return std::visit([](const auto& t) { return std::variant<Ts...>{ ::copy(t) }; }, x);
+	}
+};
 
 template <typename... Ts>
-inline constexpr caesium_lib::variant::type<Ts...> copy(const caesium_lib::variant::type<Ts...>& x) {
-	return { copy(x._value) };
-}
+struct copy_t<caesium_lib::variant::type<Ts...>> {
+	static constexpr caesium_lib::variant::type<Ts...> copy(const caesium_lib::variant::type<Ts...>& x) {
+		return { ::copy(x._value) };
+	}
+};
 
 DISABLE_BAD_MOVE_TEMPLATE(caesium_lib::variant::type)

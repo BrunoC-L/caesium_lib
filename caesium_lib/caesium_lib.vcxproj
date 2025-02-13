@@ -129,6 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="copy.hpp" />
     <ClInclude Include="file.hpp" />
     <ClInclude Include="folder.hpp" />
     <ClInclude Include="lib.hpp" />

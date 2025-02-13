@@ -63,17 +63,21 @@ template <typename T>
 constexpr inline caesium_lib::vector::type<T> copy(const caesium_lib::vector::type<T>& x);
 
 template <typename T>
-constexpr inline std::vector<T> copy(const std::vector<T>& x) {
-	std::vector<T> res{};
-	res.reserve(x.size());
-	for (const T& e : x)
-		res.push_back(copy(e));
-	return res;
-}
+struct copy_t<std::vector<T>> {
+	static constexpr std::vector<T> copy(const std::vector<T>& x) {
+		std::vector<T> res{};
+		res.reserve(x.size());
+		for (const T& e : x)
+			res.push_back(::copy(e));
+		return res;
+	}
+};
 
 template <typename T>
-constexpr inline caesium_lib::vector::type<T> copy(const caesium_lib::vector::type<T>& x) {
-	return copy(x._value);
-}
+struct copy_t<caesium_lib::vector::type<T>> {
+	static constexpr caesium_lib::vector::type<T> copy(const caesium_lib::vector::type<T>& x) {
+		return { ::copy(x._value) };
+	}
+};
 
 DISABLE_BAD_MOVE_TEMPLATE(caesium_lib::vector::type)

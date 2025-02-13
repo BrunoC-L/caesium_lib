@@ -1,6 +1,7 @@
 #pragma once
 
 // order is important!
+#include "copy.hpp"
 #include "util.hpp"
 
 #include "string.hpp"
