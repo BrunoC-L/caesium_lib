@@ -1,4 +1,5 @@
 #pragma once
+#include "copy.hpp"
 #include <type_traits>
 #include <utility>
 
@@ -26,12 +27,3 @@ struct type {\
 		"copy constructor disabled, use caesium_lib::copy(...) to copy and std::move(...) to move");\
 	}\
 };
-
-template <typename T> T copy(T t);
-constexpr inline bool copy(bool e) { return e; }
-constexpr inline char copy(char e) { return e; }
-constexpr inline int copy(int e) { return e; }
-constexpr inline float copy(float e) { return e; }
-constexpr inline unsigned copy(unsigned e) { return e; }
-constexpr inline std::size_t copy(std::size_t e) { return e; }
-constexpr inline double copy(double e) { return e; }
