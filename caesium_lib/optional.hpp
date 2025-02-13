@@ -46,10 +46,7 @@ inline constexpr std::optional<T> copy(const std::optional<T>& x) {
 
 template <typename T>
 inline constexpr caesium_lib::optional::type<T> copy(const caesium_lib::optional::type<T>& x) {
-	if (caesium_lib::optional::has_value(x))
-		return caesium_lib::optional::type<T>{ copy(x._value.value()) };
-	else
-		return caesium_lib::optional::type<T>{ std::nullopt };
+	return { copy(x._value) };
 }
 
 DISABLE_BAD_MOVE_TEMPLATE(caesium_lib::optional::type)
