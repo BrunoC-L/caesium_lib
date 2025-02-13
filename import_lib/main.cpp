@@ -95,7 +95,7 @@ int main() {
 	}
 	{
 		using namespace std::string_literals;
-		auto entries = filesystem::entries("C:/");
+		auto entries = filesystem::entries(".");
 		for (const auto& entry : entries) {
 			(void)entry;
 		}

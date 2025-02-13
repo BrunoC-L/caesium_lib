@@ -58,10 +58,6 @@ namespace caesium_lib {
 	}
 }
 
-// forward declare to allow copy(std::vector<caesium_lib::vector::type<T>>)
-template <typename T>
-constexpr inline caesium_lib::vector::type<T> copy(const caesium_lib::vector::type<T>& x);
-
 template <typename T>
 struct copy_t<std::vector<T>> {
 	static constexpr std::vector<T> copy(const std::vector<T>& x) {
