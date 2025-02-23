@@ -12,7 +12,7 @@ namespace caesium_lib {
 			constexpr type& operator=(const type&) = delete; 
 			template <typename T>
 				requires (!std::is_same_v<std::remove_cvref_t<T>, type> &&
-			(std::disjunction_v<std::is_same<std::variant<Ts...>, T>, std::is_same<std::remove_cvref_t<T>, Ts>...>))
+			(std::disjunction_v<std::is_same<std::variant<Ts...>, std::remove_cvref_t<T>>, std::is_same<std::remove_cvref_t<T>, Ts>...>))
 				inline constexpr type(T&& t) : _value(std::forward<T>(t)) {}
 		};
 
