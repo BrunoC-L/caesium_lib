@@ -81,12 +81,12 @@ namespace caesium_lib {
 
 		inline constexpr type reserve(type str, unsigned new_capacity) {
 			str._value.reserve(new_capacity);
-			return std::move(str);
+			return str;
 		}
 
 		inline constexpr type join(type str1, type str2) {
 			str1._value += std::move(str2)._value;
-			return std::move(str1);
+			return str1;
 		}
 
 		inline constexpr type join(type str1, type str2, auto&&... strs) {
