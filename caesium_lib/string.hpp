@@ -3,9 +3,31 @@
 #include <string>
 #include "optional.hpp"
 
+template <typename>
+struct is_char_array {
+	static constexpr bool value = false;
+};
+
+template <size_t n>
+struct is_char_array<char[n]> {
+	static constexpr bool value = true;
+};
+
 namespace caesium_lib {
 	namespace string {
-		WRAPPER_FOR(std::string, constexpr)
+		struct type {
+			std::string _value;
+			constexpr type(type&&) = default; 
+			constexpr type& operator=(type&&) = default; 
+			constexpr type(const type&) = delete; 
+			constexpr type& operator=(const type&) = delete; 
+			inline constexpr type(auto&& t)
+				requires (!std::is_same_v<std::remove_cvref_t<decltype(t)>, type>) &&
+			(std::is_same_v<std::remove_cvref_t<decltype(t)>, std::string> ||
+				is_char_array<std::remove_cvref_t<decltype(t)>>::value)
+				: _value(std::forward<decltype(t)>(t)) {
+			}
+		};
 
 		inline constexpr int size(const type& str) {
 			return (int)str._value.size();

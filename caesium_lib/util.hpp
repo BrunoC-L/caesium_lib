@@ -23,6 +23,6 @@ struct type {\
 	constexpr type& operator=(const type&) = delete;\
 	inline constexpr type(auto&& t) : _value(std::forward<decltype(t)>(t)) {\
 		static_assert(!std::is_same_v<std::remove_cvref_t<decltype(t)>, type>, \
-		"copy constructor disabled, use caesium_lib::copy(...) to copy and std::move(...) to move");\
+		"copy constructor disabled, use copy(...) to copy and std::move(...) to move");\
 	}\
 };

@@ -4,7 +4,17 @@
 namespace caesium_lib {
 	namespace variant {
 		template <typename... Ts>
-		WRAPPER_FOR(std::variant<Ts...>, constexpr);
+		struct type {
+			std::variant<Ts...> _value; 
+			constexpr type(type&&) = default; 
+			constexpr type& operator=(type&&) = default; 
+			constexpr type(const type&) = delete; 
+			constexpr type& operator=(const type&) = delete; 
+			template <typename T>
+				requires (!std::is_same_v<std::remove_cvref_t<T>, type> &&
+			(std::disjunction_v<std::is_same<std::variant<Ts...>, T>, std::is_same<std::remove_cvref_t<T>, Ts>...>))
+				inline constexpr type(T&& t) : _value(std::forward<T>(t)) {}
+		};
 
 		template <typename... Ts>
 		inline constexpr auto visit(const type<Ts...>& variant, const auto& overload_set) {

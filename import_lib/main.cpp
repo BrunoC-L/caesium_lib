@@ -109,6 +109,10 @@ int main() {
 	{
 		auto vstr = variant::type<int, string::type>{ string::type{"123"} };
 		auto vint = variant::type<int, string::type>{ 1 };
+
+		assert(std::holds_alternative<string::type>(vstr._value));
+		assert(std::holds_alternative<int>(vint._value));
+
 		auto vstr2 = std::move(vstr);
 		auto vint2 = std::move(vint);
 		auto vstr3 = copy(vstr2);
