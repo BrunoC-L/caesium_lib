@@ -34,9 +34,6 @@ namespace caesium_lib {
 }
 
 template <typename T>
-inline constexpr caesium_lib::optional::type<T> copy(const caesium_lib::optional::type<T>& x);
-
-template <typename T>
 struct copy_t<std::optional<T>> {
 	static constexpr std::optional<T> copy(const std::optional<T>& x) {
 		if (x.has_value())
