@@ -46,11 +46,6 @@ namespace caesium_lib {
 		}
 
 		template <typename T>
-		void reserve(const type<T>& vec, size_t n) {
-			vec._value.reserve(n);
-		}
-
-		template <typename T>
 		type<T> reserve(type<T>&& vec, size_t n) {
 			vec._value.reserve(n);
 			return std::move(vec);
