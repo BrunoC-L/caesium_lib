@@ -105,4 +105,8 @@ struct copy_t<std::string> {
 	static constexpr std::string copy(const std::string& t) { return t; }
 };
 
+inline auto operator<=>(const caesium_lib::string::type& l, const caesium_lib::string::type& r) {
+	return l._value <=> r._value;
+}
+
 DISABLE_BAD_MOVE(caesium_lib::string::type)

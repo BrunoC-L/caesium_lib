@@ -14,7 +14,7 @@ namespace caesium_lib {
 		template <typename T>
 		type<T> make_with_capacity(size_t n) {
 			auto res = make_empty<T>();
-			reserve(res, n);
+			res = reserve(std::move(res), n);
 			return res;
 		}
 

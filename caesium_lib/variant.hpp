@@ -55,7 +55,11 @@ namespace caesium_lib {
 template <typename... Ts>
 struct copy_t<std::variant<Ts...>> {
 	static constexpr std::variant<Ts...> copy(const std::variant<Ts...>& x) {
-		return std::visit([](const auto& t) { return std::variant<Ts...>{ ::copy(t) }; }, x);
+		return std::visit(
+			[](const auto& t) {
+				return std::variant<Ts...>{ ::copy(t) };
+			}
+		, x);
 	}
 };
 
